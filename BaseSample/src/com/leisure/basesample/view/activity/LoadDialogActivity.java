@@ -14,6 +14,7 @@ public class LoadDialogActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_loading);
+		//点击按钮
 		findViewById(R.id.bt).setOnClickListener(new OnClickListener() {
 			
 			@Override
