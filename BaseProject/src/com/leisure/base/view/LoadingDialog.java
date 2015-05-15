@@ -8,7 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.leisure.base.R;
-
+/**
+ * 网络请求dialog
+ * @author leisure
+ *
+ */
 public class LoadingDialog extends Dialog{
 	public LoadingDialog(Context context, int theme) {
 		super(context, theme);
