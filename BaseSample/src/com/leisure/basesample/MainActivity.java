@@ -1,47 +1,54 @@
 package com.leisure.basesample;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.leisure.base.view.LoadingDialog;
+import com.leisure.basesample.view.activity.LoadDialogActivity;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 
 public class MainActivity extends Activity {
-
+	private ListView mListView;
+	private String[] data={"utils","view"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.bt).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				LoadingDialog.createDialog(MainActivity.this).show();
+       mListView=(ListView)findViewById(R.id.lv);
+       List<Map<String, String>> list=new ArrayList<Map<String,String>>();
+       if(data!=null&&data.length>0){
+    	   for(int i=0;i<data.length;i++){
+    		   Map<String, String> map=new HashMap<String, String>();
+    		   map.put("title", data[i]);
+    		   list.add(map);
+    	   }
+    	  
+       }
+       mListView.setAdapter(new SimpleAdapter(this, list, android.R.layout.simple_list_item_1, 
+    		   new String[]{"title"}, new int[]{android.R.id.text1}));
+       mListView.setOnItemClickListener(new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			if(arg2==1){
+				startActivity(new Intent(MainActivity.this, LoadDialogActivity.class));
 			}
-		});
+			
+		}
+	});
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+ 
 }
