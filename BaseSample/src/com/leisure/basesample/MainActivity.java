@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.leisure.basesample.view.activity.LoadDialogActivity;
+import com.leisure.basesample.view.activity.ViewListActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +18,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 	private ListView mListView;
 	private String[] data={"utils","view"};
     @Override
@@ -42,7 +43,7 @@ public class MainActivity extends Activity {
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			if(arg2==1){
-				startActivity(new Intent(MainActivity.this, LoadDialogActivity.class));
+				startActivity(new Intent(MainActivity.this, ViewListActivity.class));
 			}
 			
 		}
